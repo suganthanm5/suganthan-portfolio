@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Github, 
-  Linkedin, 
-  Mail, 
-  Phone, 
-  Download, 
-  ExternalLink, 
-  Code, 
-  Database, 
-  Brain, 
+import {
+  Github,
+  Linkedin,
+  Mail,
+  Phone,
+  Download,
+  ExternalLink,
+  Code,
+  Database,
+  Brain,
   BarChart,
   User,
   Briefcase,
@@ -35,9 +35,12 @@ const App = () => {
   };
 
   const handleDownload = () => {
-    // In a real scenario, these files would exist in the public folder
-    alert(`Downloading ${activeRole} Resume. (Please ensure ${resumeLinks[activeRole]} is in your public folder)`);
-    // window.open(resumeLinks[activeRole], '_blank');
+    const link = document.createElement('a');
+    link.href = resumeLinks[activeRole];
+    link.download = `Suganthan_M_${activeRole.replace(/\s+/g, '_')}_Resume.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -66,7 +69,7 @@ const App = () => {
 
           <div className="role-selector glass" style={{ padding: '0.5rem', borderRadius: '3rem' }}>
             {['Full Stack Developer', 'Data Analyst'].map(role => (
-              <button 
+              <button
                 key={role}
                 className={`role-btn ${activeRole === role ? 'active' : ''}`}
                 onClick={() => setActiveRole(role)}
@@ -165,18 +168,18 @@ const App = () => {
       <section id="projects" className="container">
         <h2 className="section-title"><span>Top Projects</span></h2>
         <div className="grid grid-3">
-          <ProjectCard 
-            title="IPL Match Winner Prediction" 
+          <ProjectCard
+            title="IPL Match Winner Prediction"
             desc="Built a machine learning model using historical IPL data to analyze team performance and visualize insights."
             tags={['ML', 'Python', 'Visualization']}
           />
-          <ProjectCard 
-            title="Audio Denoising using ML" 
+          <ProjectCard
+            title="Audio Denoising using ML"
             desc="Developed a system to remove noise from audio signals applying preprocessing and feature extraction techniques."
             tags={['Audio Processing', 'ML', 'Python']}
           />
-          <ProjectCard 
-            title="Image Recognition Chatbot" 
+          <ProjectCard
+            title="Image Recognition Chatbot"
             desc="Built an AI chatbot capable of analyzing images and responding with text using CV and conversational interaction."
             tags={['AI', 'Computer Vision', 'React']}
           />
@@ -226,8 +229,8 @@ const App = () => {
               </a>
             </div>
             <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
-              <a href="https://github.com/yourusername" className="glass" style={{ padding: '0.75rem' }}><Github /></a>
-              <a href="https://linkedin.com/in/yourusername" className="glass" style={{ padding: '0.75rem' }}><Linkedin /></a>
+              <a href="https://github.com/suganthanm5" target="_blank" rel="noopener noreferrer" className="glass" style={{ padding: '0.75rem' }}><Github /></a>
+              <a href="https://www.linkedin.com/in/suganthan-mahadevan-263056306" target="_blank" rel="noopener noreferrer" className="glass" style={{ padding: '0.75rem' }}><Linkedin /></a>
             </div>
           </div>
           <motion.form {...fadeInUp} className="grid" style={{ gap: '1rem' }}>
@@ -250,7 +253,7 @@ const App = () => {
 };
 
 const ProjectCard = ({ title, desc, tags }) => (
-  <motion.div 
+  <motion.div
     whileHover={{ scale: 1.02 }}
     className="glass card project-card"
   >
