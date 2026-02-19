@@ -23,8 +23,8 @@ const App = () => {
   const [activeRole, setActiveRole] = useState('Full Stack Developer');
 
   const resumeLinks = {
-    'Full Stack Developer': '/resume-fsd.pdf',
-    'Data Analyst': '/resume-da.pdf'
+    'Full Stack Developer': `${import.meta.env.BASE_URL}resume-fsd.pdf`,
+    'Data Analyst': `${import.meta.env.BASE_URL}resume-da.pdf`
   };
 
   const fadeInUp = {
